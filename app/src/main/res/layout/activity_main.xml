@@ -8,22 +8,26 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No hay un juego cargado, creá uno primero."
+        android:text="No hay un juego cargado.\n Creá uno primero."
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimaryTextHalfOpacity"
         android:visibility="visible" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabAgregarJuego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
+        android:tint="@color/colorIcons"
         android:visibility="visible"
+        app:backgroundTint="@color/colorAccent"
         app:elevation="5dp"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:tint="?attr/colorBackgroundFloating" />
+        app:rippleColor="@color/colorAccentLight"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </LinearLayout>

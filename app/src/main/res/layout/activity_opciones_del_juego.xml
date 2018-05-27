@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/numero_de_jugadores"
+        android:text="Número de Jugadores:  "
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <SeekBar
@@ -76,7 +76,7 @@
                 android:hint="@string/hint_nombre_jugador"
                 android:inputType="textPersonName"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/txtEq1Jug3"
@@ -86,7 +86,7 @@
                 android:hint="@string/hint_nombre_jugador"
                 android:inputType="textPersonName"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,9 +165,9 @@
             android:id="@+id/txtNumeroChicos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:ems="10"
-            android:hint="1 o más"
+            android:hint="1-10"
             android:inputType="numberDecimal"
             android:singleLine="true"
             android:text="1"
