@@ -7,21 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No hay un juego cargado.\n Creá uno primero."
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimaryTextHalfOpacity"
-        android:visibility="visible" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAgregarJuego"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:clickable="true"
         android:focusable="true"
+        android:rotation="0"
         android:tint="@color/colorIcons"
         android:visibility="visible"
         app:backgroundTint="@color/colorAccent"
@@ -29,5 +22,259 @@
         app:fabSize="normal"
         app:rippleColor="@color/colorAccentLight"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/lblNoHayJuego"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="No hay un juego cargado.\n Creá uno primero."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimaryTextHalfOpacity"
+        android:visibility="gone" />
+
+    <Space
+        android:id="@+id/spcBottomSpace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/lblEq1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/equipo_1"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblJug1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEq1" />
+
+            <TextView
+                android:id="@+id/lblPuntos1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Tantos:"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblJug1" />
+
+            <TextView
+                android:id="@+id/lblChicos1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Chicos:"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblPuntos1" />
+
+            <Button
+                android:id="@+id/btnGanaRonda1"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Ganó"
+                android:enabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnEnvido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Envido" />
+
+            <Button
+                android:id="@+id/btnRealEnvido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Real Envido" />
+
+            <Button
+                android:id="@+id/btnFaltaEnvido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Falta Envido" />
+
+            <Button
+                android:id="@+id/btnFlor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Flor" />
+
+            <Button
+                android:id="@+id/btnContraFlor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contra-Flor"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnContraFlorAlResto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contra-Flor\nal Resto"
+                android:visibility="gone" />
+
+            <Space
+                android:id="@+id/spcMiddleSpace"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnTruco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Truco" />
+
+            <Button
+                android:id="@+id/btnRetruco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retruco"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnValeCuatro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vale Cuatro"
+                android:visibility="gone" />
+
+            <Space
+                android:id="@+id/spcMiddleSpace2"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnVanAlMazo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Van al Mazo" />
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/lblEq2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/equipo_2"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblJug2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEq2" />
+
+            <TextView
+                android:id="@+id/lblPuntos2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Tantos:"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblJug2" />
+
+            <TextView
+                android:id="@+id/lblChicos2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Chicos:"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblPuntos2" />
+
+            <Button
+                android:id="@+id/btnGanaRonda2"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Ganó"
+                android:enabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </LinearLayout>
