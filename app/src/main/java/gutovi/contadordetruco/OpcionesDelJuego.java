@@ -3,15 +3,12 @@ package gutovi.contadordetruco;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-
-import java.io.Console;
 
 
 public class OpcionesDelJuego extends AppCompatActivity {
@@ -24,8 +21,8 @@ public class OpcionesDelJuego extends AppCompatActivity {
     Integer prgValor;
     Integer NumeroChicos;
     Switch swtFlor;
-
-    EditText Chicos;
+    SeekBar Chicos;
+    TextView lblChicos;
 
     EditText Eq1Jug1;
     EditText Eq2Jug1;
@@ -46,7 +43,9 @@ public class OpcionesDelJuego extends AppCompatActivity {
         prgValor = prgJugadores.getProgress();
         numJugadores = Integer.toString((prgValor+1)*2);
 
-        Chicos = findViewById(R.id.txtNumeroChicos);
+        Chicos = findViewById(R.id.prgNumChicos);
+        lblChicos = findViewById(R.id.lblNumeroChicos);
+        NumeroChicos = Chicos.getProgress()+1;
 
         Eq1Jug1 = findViewById(R.id.txtEq1Jug1);
         Eq2Jug1 = findViewById(R.id.txtEq2Jug1);
@@ -98,23 +97,43 @@ public class OpcionesDelJuego extends AppCompatActivity {
             }
         });
 
+        Chicos.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                NumeroChicos = Chicos.getProgress()+1;
+
+                lblChicos.setText("Número de Chicos para Ganar:  " + NumeroChicos);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         BotonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                NumeroChicos = Integer.parseInt(Chicos.getText().toString());
+                NumeroChicos = Chicos.getProgress()+1;
 
                 Intent iniciarPartida = new Intent(OpcionesDelJuego.this, MainActivity.class);
                 iniciarPartida.putExtra("NumeroJugadores",Integer.parseInt(numJugadores));
                 iniciarPartida.putExtra("Flor",swtFlor.isChecked());
                 iniciarPartida.putExtra("NumeroChicos",NumeroChicos);
 
-                iniciarPartida.putExtra("E1J1",Eq1Jug1.getText());
-                iniciarPartida.putExtra("E1J1",Eq1Jug2.getText());
-                iniciarPartida.putExtra("E1J1",Eq1Jug3.getText());
-                iniciarPartida.putExtra("E1J1",Eq2Jug1.getText());
-                iniciarPartida.putExtra("E1J1",Eq2Jug2.getText());
-                iniciarPartida.putExtra("E1J1",Eq2Jug3.getText());
+                iniciarPartida.putExtra("E1J1","\n"+Eq1Jug1.getText());
+                iniciarPartida.putExtra("E1J2","\n"+Eq1Jug2.getText());
+                iniciarPartida.putExtra("E1J3","\n"+Eq1Jug3.getText());
+                iniciarPartida.putExtra("E2J1","\n"+Eq2Jug1.getText());
+                iniciarPartida.putExtra("E2J2","\n"+Eq2Jug2.getText());
+                iniciarPartida.putExtra("E2J3","\n"+Eq2Jug3.getText());
 
                 startActivity(iniciarPartida);
 
@@ -129,5 +148,7 @@ public class OpcionesDelJuego extends AppCompatActivity {
         super.onStart();
 
         lblJugadores.setText("Número de Jugadores:  " + numJugadores);
+
+        lblChicos.setText("Número de Chicos para Ganar:  " + NumeroChicos);
     }
 }

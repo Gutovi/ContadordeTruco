@@ -5,5 +5,4 @@
     <string name="integrantes">Integrantes</string>
     <string name="hint_nombre_jugador">Nombre del Jugador</string>
     <string name="se_juega_con_flor">Se juega con Flor</string>
-    <string name="numero_de_chicos_para_ganar">Número de Chicos para Ganar:</string>
 </resources>
