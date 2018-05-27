@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Contador de Truco</string>
+    <string name="equipo_1">Equipo 1</string>
+    <string name="equipo_2">Equipo 2</string>
+    <string name="integrantes">Integrantes</string>
+    <string name="numero_de_jugadores">Número de Jugadores:</string>
+    <string name="hint_nombre_jugador">Nombre del Jugador</string>
+    <string name="se_juega_con_flor">Se juega con Flor</string>
+    <string name="numero_de_chicos_para_ganar">Número de Chicos para Ganar:</string>
 </resources>
