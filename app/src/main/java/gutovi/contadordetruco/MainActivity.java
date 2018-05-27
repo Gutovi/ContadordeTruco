@@ -1,6 +1,7 @@
 package gutovi.contadordetruco;
 
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,19 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    Integer intPtosEnJuego = 0;
+    Integer intPtos1 = 0;
+    Integer intPtos2 = 0;
+    Integer intChicos1 = 0;
+    Integer intChicos2 = 0;
+
+    Deque<String> JugadaAnterior = new ArrayDeque<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +37,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     final FloatingActionButton fabNuevoJuego = findViewById(R.id.fabAgregarJuego);
-    TextView lblNoHayJuegos = findViewById(R.id.lblNoHayJuego);
-    Space spcBottom = findViewById(R.id.spcBottomSpace);
+    final TextView lblNoHayJuegos = findViewById(R.id.lblNoHayJuego);
+    final Space spcBottom = findViewById(R.id.spcBottomSpace);
 
-    LinearLayout lytJuego = findViewById(R.id.lytJuego);
+    final LinearLayout lytJuego = findViewById(R.id.lytJuego);
+    final LinearLayout lytTruco = findViewById(R.id.lytTruco);
+    final LinearLayout lytEnvido = findViewById(R.id.lytEnvido);
+    final LinearLayout lytFlor = findViewById(R.id.lytFlor);
+    final LinearLayout lytMazoNoPrimera = findViewById(R.id.lytPrimeraMazoYNoQuiero);
 
     TextView lblNombres1 = findViewById(R.id.lblJug1);
     TextView lblNombres2 = findViewById(R.id.lblJug2);
     TextView lblPtos1 = findViewById(R.id.lblPuntos1);
     TextView lblPtos2 = findViewById(R.id.lblPuntos2);
+    final TextView lblPtosEnJuego = findViewById(R.id.lblPuntosEnJuego);
     TextView lblChicos1 = findViewById(R.id.lblChicos1);
     TextView lblChicos2 = findViewById(R.id.lblChicos2);
-    Integer intPtosEnJuego;
-    Integer intPtos1 = 0;
-    Integer intPtos2 = 0;
-    Integer intChicos1 = 0;
-    Integer intChicos2 = 0;
 
     final Button btnEnvido = findViewById(R.id.btnEnvido);
     final Button btnRealEnvido = findViewById(R.id.btnRealEnvido);
@@ -53,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
     final Button btnRetruco = findViewById(R.id.btnRetruco);
     final Button btnValeCuatro = findViewById(R.id.btnValeCuatro);
 
-    final Button btnVanAlMazo = findViewById(R.id.btnVanAlMazo);
+    final Button btnVanAlMazo = findViewById(R.id.btnMazoONoQuiero);
+    final Button btnPrimerCarta = findViewById(R.id.btnSeJuegaPrimerCarta);
 
     final  Button btnGanar1 = findViewById(R.id.btnGanaRonda1);
     final Button btnGanar2 = findViewById(R.id.btnGanaRonda2);
@@ -74,10 +88,14 @@ public class MainActivity extends AppCompatActivity {
                 getIntent().getStringExtra("E2J2")+
                 getIntent().getStringExtra("E2J3"));
 
+        if(!getIntent().getBooleanExtra("Flor",true))    lytFlor.setVisibility(View.GONE);
+        else    lytFlor.setVisibility(View.VISIBLE);
+
         lblPtos1.setText("Tantos:\n"+intPtos1);
         lblPtos2.setText("Tantos:\n"+intPtos2);
         lblChicos1.setText("Chicos:\n"+intChicos1);
         lblChicos2.setText("Chicos:\n"+intChicos2);
+        JugadaAnterior.push("Inicio");
 
     }else{
         lblNoHayJuegos.setVisibility(View.VISIBLE);
@@ -96,10 +114,102 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEnvido.setOnClickListener(new View.OnClickListener() {
+        btnVanAlMazo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if(btnVanAlMazo.getText().equals("Van al Mazo")) intPtosEnJuego = 1;
+                if(btnVanAlMazo.getText().equals("No se Quiere")) intPtosEnJuego = JugadaAnterior.size()-1;
+
+                if (lytEnvido.getVisibility() != View.GONE) lytEnvido.setVisibility(View.GONE);
+                if (lytFlor.getVisibility() != View.GONE) lytFlor.setVisibility(View.GONE);
+                if (lytTruco.getVisibility() != View.GONE) lytTruco.setVisibility(View.GONE);
+                lytMazoNoPrimera.setVisibility(View.GONE);
+
+                lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+                btnGanar1.setEnabled(true);
+                btnGanar2.setEnabled(true);
+            }
+        });
+
+        btnPrimerCarta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (lytEnvido.getVisibility() != View.GONE) lytEnvido.setVisibility(View.GONE);
+                if (lytFlor.getVisibility() != View.GONE) lytFlor.setVisibility(View.GONE);
+                btnPrimerCarta.setVisibility(View.GONE);
+
+            }
+        });
+
+        btnEnvido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intPtosEnJuego += 2;
+
+                Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                if (JugadaAnterior.getFirst().equals("Envido"))  btnEnvido.setVisibility(View.GONE);
+                JugadaAnterior.push("Envido");
+
+                lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+                lytTruco.setVisibility(View.GONE);
+                lytFlor.setVisibility(View.GONE);
+                btnPrimerCarta.setVisibility(View.GONE);
+
+                btnVanAlMazo.setText("No se Quiere");
+                btnGanar1.setEnabled(true);
+                btnGanar2.setEnabled(true);
+            }
+        });
+
+        btnRealEnvido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intPtosEnJuego += 3;
+
+                Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                btnEnvido.setVisibility(View.GONE);
+                btnRealEnvido.setVisibility(View.GONE);
+                JugadaAnterior.push("Real Envido");
+
+                lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+                lytTruco.setVisibility(View.GONE);
+                lytFlor.setVisibility(View.GONE);
+                btnPrimerCarta.setVisibility(View.GONE);
+
+                if (btnVanAlMazo.getText().equals("Van al Mazo"))btnVanAlMazo.setText("No se Quiere");
+                btnGanar1.setEnabled(true);
+                btnGanar2.setEnabled(true);
+            }
+        });
+
+        btnFaltaEnvido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(intPtos1>=intPtos2) intPtosEnJuego = 30-intPtos1;
+                else intPtosEnJuego = 30-intPtos2;
+
+                Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                btnEnvido.setVisibility(View.GONE);
+                btnRealEnvido.setVisibility(View.GONE);
+                btnFaltaEnvido.setVisibility(View.GONE);
+                JugadaAnterior.push("Falta Envido");
+
+                lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+                lytTruco.setVisibility(View.GONE);
+                lytFlor.setVisibility(View.GONE);
+                btnPrimerCarta.setVisibility(View.GONE);
+
+                if (btnVanAlMazo.getText().equals("Van al Mazo"))btnVanAlMazo.setText("No se Quiere");
+                btnGanar1.setEnabled(true);
+                btnGanar2.setEnabled(true);
             }
         });
     }
