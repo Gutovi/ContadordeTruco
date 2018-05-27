@@ -196,9 +196,7 @@ public class MainActivity extends AppCompatActivity {
                 else intPtosEnJuego = 30-intPtos2;
 
                 Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
-                btnEnvido.setVisibility(View.GONE);
-                btnRealEnvido.setVisibility(View.GONE);
-                btnFaltaEnvido.setVisibility(View.GONE);
+                lytEnvido.setVisibility(View.GONE);
                 JugadaAnterior.push("Falta Envido");
 
                 lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
@@ -212,5 +210,86 @@ public class MainActivity extends AppCompatActivity {
                 btnGanar2.setEnabled(true);
             }
         });
+
+        if(getIntent().getBooleanExtra("Flor",true)){
+
+            btnFlor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intPtosEnJuego = 3;
+
+                    if(btnContraFlor.getVisibility()==View.GONE)btnContraFlor.setVisibility(View.VISIBLE);
+                    if(btnContraFlorAlResto.getVisibility()==View.GONE)btnContraFlorAlResto.setVisibility(View.VISIBLE);
+
+                    Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                    if (JugadaAnterior.getFirst().equals("Flor")){
+                        btnFlor.setVisibility(View.GONE);
+                        btnContraFlor.setVisibility(View.GONE);
+                        intPtosEnJuego = 4;
+                    }
+                    JugadaAnterior.push("Flor");
+
+                    lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+
+                    lytTruco.setVisibility(View.GONE);
+                    lytEnvido.setVisibility(View.GONE);
+                    btnPrimerCarta.setVisibility(View.GONE);
+
+                    btnVanAlMazo.setVisibility(View.GONE);
+                    btnGanar1.setEnabled(true);
+                    btnGanar2.setEnabled(true);
+                }
+            });
+
+            btnContraFlor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intPtosEnJuego = 6;
+
+                    Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                    btnFlor.setVisibility(View.GONE);
+                    btnContraFlor.setVisibility(View.GONE);
+                    JugadaAnterior.push("Contra-Flor");
+
+                    lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+                }
+            });
+
+            btnContraFlorAlResto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(intPtos1>=intPtos2) intPtosEnJuego = 30-intPtos1;
+                    else intPtosEnJuego = 30-intPtos2;
+
+                    Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                    lytFlor.setVisibility(View.GONE);
+                    JugadaAnterior.push("Contra-Flor al Resto");
+
+                    lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+                }
+            });
+        }
+
+        /*btnTruco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intPtosEnJuego += 2;
+
+                Log.d("Jugada Anterior: ",JugadaAnterior.getFirst());
+                if (JugadaAnterior.getFirst().equals("Envido"))  btnEnvido.setVisibility(View.GONE);
+                JugadaAnterior.push("Envido");
+
+                lblPtosEnJuego.setText("Puntos\nen Juego:\n"+intPtosEnJuego);
+
+                lytTruco.setVisibility(View.GONE);
+                lytFlor.setVisibility(View.GONE);
+                btnPrimerCarta.setVisibility(View.GONE);
+
+                btnVanAlMazo.setText("No se Quiere");
+                btnGanar1.setEnabled(true);
+                btnGanar2.setEnabled(true);
+            }
+        });*/
     }
 }
