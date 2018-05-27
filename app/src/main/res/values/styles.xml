@@ -5,12 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryLight">@color/colorPrimaryLight</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeExtended">
+        <item name="colorPrimaryLight">@color/colorPrimaryLight</item>
         <item name="colorPrimaryText">@color/colorPrimaryText</item>
         <item name="colorSecondaryText">@color/colorSecondaryText</item>
         <item name="colorIcons">@color/colorIcons</item>
         <item name="colorDivider">@color/colorDivider</item>
     </style>
-
 </resources>
