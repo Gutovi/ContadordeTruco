@@ -128,12 +128,12 @@ public class OpcionesDelJuego extends AppCompatActivity {
                 iniciarPartida.putExtra("Flor",swtFlor.isChecked());
                 iniciarPartida.putExtra("NumeroChicos",NumeroChicos);
 
-                iniciarPartida.putExtra("E1J1","\n"+Eq1Jug1.getText());
-                iniciarPartida.putExtra("E1J2","\n"+Eq1Jug2.getText());
-                iniciarPartida.putExtra("E1J3","\n"+Eq1Jug3.getText());
-                iniciarPartida.putExtra("E2J1","\n"+Eq2Jug1.getText());
-                iniciarPartida.putExtra("E2J2","\n"+Eq2Jug2.getText());
-                iniciarPartida.putExtra("E2J3","\n"+Eq2Jug3.getText());
+                iniciarPartida.putExtra("E1J1",""+Eq1Jug1.getText());
+                iniciarPartida.putExtra("E1J2",""+Eq1Jug2.getText());
+                iniciarPartida.putExtra("E1J3",""+Eq1Jug3.getText());
+                iniciarPartida.putExtra("E2J1",""+Eq2Jug1.getText());
+                iniciarPartida.putExtra("E2J2",""+Eq2Jug2.getText());
+                iniciarPartida.putExtra("E2J3",""+Eq2Jug3.getText());
 
                 startActivity(iniciarPartida);
 

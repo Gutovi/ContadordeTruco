@@ -7,25 +7,8 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAgregarJuego"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:rotation="0"
-        android:tint="@color/colorIcons"
-        android:visibility="visible"
-        app:backgroundTint="@color/colorAccent"
-        app:elevation="5dp"
-        app:fabSize="normal"
-        app:rippleColor="@color/colorAccentLight"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
     <TextView
-        android:id="@+id/lblNoHayJuego"
+        android:id="@+id/lblMensajeGrande"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -43,6 +26,115 @@
         android:layout_height="match_parent"
         android:layout_weight="5"
         android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100" />
+
+        <TableLayout
+            android:id="@+id/lytPosiciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_weight="30"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/lblPosJug11"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/lblPosJug22"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorAccentLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/lblPosJug13"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/lblPosJug21"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorAccentLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/lblPosJug12"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/lblPosJug23"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorAccentLight"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAgregarJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:rotation="0"
+            android:tint="@color/colorIcons"
+            android:visibility="visible"
+            app:backgroundTint="@color/colorAccent"
+            app:elevation="5dp"
+            app:fabSize="normal"
+            app:rippleColor="@color/colorAccentLight"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/lytJuego"
@@ -63,6 +155,7 @@
                 android:id="@+id/lblEq1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@color/colorAccentLight"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/equipo_1"
                 android:textAlignment="center"
@@ -274,6 +367,7 @@
                 android:id="@+id/lblEq2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@color/colorPrimaryLight"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/equipo_2"
                 android:textAlignment="center"
