@@ -37,7 +37,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="100" />
+            android:layout_weight="102" />
 
         <TableLayout
             android:id="@+id/lytPosiciones"
@@ -55,30 +55,36 @@
 
                 <TextView
                     android:id="@+id/lblPosJug11"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@color/colorPrimaryLight"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
-
-                <TextView
-                    android:id="@+id/lblPosJug22"
-                    android:layout_width="35dp"
+                    android:layout_width="40dp"
                     android:layout_height="35dp"
                     android:background="@color/colorAccentLight"
                     android:gravity="center"
+                    android:text="E1J1"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/lblPosJug13"
-                    android:layout_width="35dp"
+                    android:id="@+id/lblPosJug22"
+                    android:layout_width="40dp"
                     android:layout_height="35dp"
                     android:background="@color/colorPrimaryLight"
                     android:gravity="center"
+                    android:text="E2J2"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/lblPosJug13"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorAccentLight"
+                    android:gravity="center"
+                    android:text="E1J3"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
             </TableRow>
 
             <TableRow
@@ -88,30 +94,36 @@
 
                 <TextView
                     android:id="@+id/lblPosJug21"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@color/colorAccentLight"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
-
-                <TextView
-                    android:id="@+id/lblPosJug12"
-                    android:layout_width="35dp"
+                    android:layout_width="40dp"
                     android:layout_height="35dp"
                     android:background="@color/colorPrimaryLight"
                     android:gravity="center"
+                    android:text="E2J1"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/lblPosJug23"
-                    android:layout_width="35dp"
+                    android:id="@+id/lblPosJug12"
+                    android:layout_width="40dp"
                     android:layout_height="35dp"
                     android:background="@color/colorAccentLight"
                     android:gravity="center"
+                    android:text="E1J2"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/lblPosJug23"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center"
+                    android:text="E2J3"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText"
+                    android:visibility="gone" />
 
             </TableRow>
 
@@ -122,6 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|end"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
@@ -140,7 +153,6 @@
         android:id="@+id/lytJuego"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:visibility="visible">
@@ -201,26 +213,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblPuntos1" />
-
-            <TextView
-                android:id="@+id/lblResultado1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="GANARON"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/btnGanaRonda1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblChicos1" />
 
             <Button
                 android:id="@+id/btnGanaRonda1"
@@ -413,25 +405,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblPuntos2" />
-
-            <TextView
-                android:id="@+id/lblResultado2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="GANARON"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/btnGanaRonda2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblChicos2" />
 
             <Button
                 android:id="@+id/btnGanaRonda2"

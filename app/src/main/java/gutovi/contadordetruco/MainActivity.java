@@ -1,13 +1,9 @@
 package gutovi.contadordetruco;
 
 import android.content.Intent;
-import android.opengl.Visibility;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.text.Layout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -31,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Integer intChicos2 = 0;
     Integer intChicosAGanar = 0;
     Integer intNumeroJugadores = 2;
+    Integer Mano = 1;
+
 
     Deque<String> JugadaAnterior = new ArrayDeque<>();
 
@@ -59,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
         final TextView lblChicos1 = findViewById(R.id.lblChicos1);
         final TextView lblChicos2 = findViewById(R.id.lblChicos2);
 
-        TextView lblPosJug11 = findViewById(R.id.lblPosJug11);
-        TextView lblPosJug12 = findViewById(R.id.lblPosJug12);
-        TextView lblPosJug13 = findViewById(R.id.lblPosJug13);
-        TextView lblPosJug21 = findViewById(R.id.lblPosJug21);
-        TextView lblPosJug22 = findViewById(R.id.lblPosJug22);
-        TextView lblPosJug23 = findViewById(R.id.lblPosJug23);
+        final TextView lblPosJug11 = findViewById(R.id.lblPosJug11);
+        final TextView lblPosJug12 = findViewById(R.id.lblPosJug12);
+        final TextView lblPosJug13 = findViewById(R.id.lblPosJug13);
+        final TextView lblPosJug21 = findViewById(R.id.lblPosJug21);
+        final TextView lblPosJug22 = findViewById(R.id.lblPosJug22);
+        final TextView lblPosJug23 = findViewById(R.id.lblPosJug23);
 
         final Button btnEnvido = findViewById(R.id.btnEnvido);
         final Button btnRealEnvido = findViewById(R.id.btnRealEnvido);
@@ -84,9 +80,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btnGanar1 = findViewById(R.id.btnGanaRonda1);
         final Button btnGanar2 = findViewById(R.id.btnGanaRonda2);
 
-        TextView lblGanar1 = findViewById(R.id.lblResultado1);
-        TextView lblGanar2 = findViewById(R.id.lblResultado2);
-        intNumeroJugadores = getIntent().getIntExtra("NumeroJugadores",2);
+        intNumeroJugadores = getIntent().getIntExtra("NumeroJugadores", 2);
 
 
         if (getIntent().getExtras() != null) {
@@ -95,15 +89,23 @@ public class MainActivity extends AppCompatActivity {
             fabNuevoJuego.setRotation(45);
             lytJuego.setVisibility(View.VISIBLE);
             lytPosiciones.setVisibility(View.VISIBLE);
-            lblNombres1.setText("\n1: "+getIntent().getStringExtra("E1J1"));
-            lblNombres2.setText("\n1: "+getIntent().getStringExtra("E2J1"));
-            if (intNumeroJugadores==4){
-                lblNombres1.append("\n2: "+getIntent().getStringExtra("E1J2"));
-                lblNombres2.append("\n2: "+getIntent().getStringExtra("E2J2"));
+            lblNombres1.setText("\n1: " + getIntent().getStringExtra("E1J1"));
+            lblNombres2.setText("\n1: " + getIntent().getStringExtra("E2J1"));
+            lblPosJug11.setVisibility(View.VISIBLE);
+            lblPosJug21.setVisibility(View.VISIBLE);
+            lblPosJug11.append("\nDa");
+            lblPosJug21.append("\nMano");
+            if (intNumeroJugadores >= 4) {
+                lblNombres1.append("\n2: " + getIntent().getStringExtra("E1J2"));
+                lblNombres2.append("\n2: " + getIntent().getStringExtra("E2J2"));
+                lblPosJug12.setVisibility(View.VISIBLE);
+                lblPosJug22.setVisibility(View.VISIBLE);
             }
-            if (intNumeroJugadores==6){
-                lblNombres1.append("\n3: "+getIntent().getStringExtra("E1J3"));
-                lblNombres2.append("\n3: "+getIntent().getStringExtra("E2J3"));
+            if (intNumeroJugadores == 6) {
+                lblNombres1.append("\n3: " + getIntent().getStringExtra("E1J3"));
+                lblNombres2.append("\n3: " + getIntent().getStringExtra("E2J3"));
+                lblPosJug13.setVisibility(View.VISIBLE);
+                lblPosJug23.setVisibility(View.VISIBLE);
             }
             if (!getIntent().getBooleanExtra("Flor", true)) lytFlor.setVisibility(View.GONE);
             else lytFlor.setVisibility(View.VISIBLE);
@@ -361,23 +363,26 @@ public class MainActivity extends AppCompatActivity {
                 if (intChicos1 >= intChicosAGanar) {
                     lytJuego.setVisibility(View.GONE);
                     spcBottom.setVisibility(View.VISIBLE);
+                    lytPosiciones.setVisibility(View.GONE);
                     lblMensajeGrande.setVisibility(View.VISIBLE);
                     lblMensajeGrande.setText("Ha ganado el Equipo 1! Felicitaciones a:\n" +
-                            getIntent().getStringExtra("E1J1") +
-                            getIntent().getStringExtra("E1J2") +
+                            getIntent().getStringExtra("E1J1") + "\n" +
+                            getIntent().getStringExtra("E1J2") + "\n" +
                             getIntent().getStringExtra("E1J3"));
                 } else {
                     intPtosEnJuego = 0;
                     lblPtosEnJuego.setText("Puntos\nen Juego:\n" + intPtosEnJuego);
 
-                    if (JugadaAnterior.getFirst().equals("Envido")||JugadaAnterior.getFirst().equals("Real Envido")
-                            ||JugadaAnterior.getFirst().equals("Falta Envido")||JugadaAnterior.getFirst().equals("Flor")||
-                            JugadaAnterior.getFirst().equals("Contra-Flor")||JugadaAnterior.getFirst().equals("Contra-Flor al Resto")){
+                    if (JugadaAnterior.getFirst().equals("Envido") || JugadaAnterior.getFirst().equals("Real Envido")
+                            || JugadaAnterior.getFirst().equals("Falta Envido") || JugadaAnterior.getFirst().equals("Flor") ||
+                            JugadaAnterior.getFirst().equals("Contra-Flor") || JugadaAnterior.getFirst().equals("Contra-Flor al Resto")) {
                         lytTruco.setVisibility(View.VISIBLE);
                         lytEnvido.setVisibility(View.GONE);
                         lytFlor.setVisibility(View.GONE);
+                        lytMazoNoPrimera.setVisibility(View.VISIBLE);
+                        btnPrimerCarta.setVisibility(View.GONE);
                         btnVanAlMazo.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         lytEnvido.setVisibility(View.VISIBLE);
                         btnEnvido.setVisibility(View.VISIBLE);
                         btnRealEnvido.setVisibility(View.VISIBLE);
@@ -403,6 +408,54 @@ public class MainActivity extends AppCompatActivity {
 
                     lblPtos1.setText("Tantos:\n" + intPtos1);
                     lblChicos1.setText("Chicos:\n" + intChicos1);
+
+                    if (lblPosJug11.getText().toString().contains("Mano") || lblPosJug11.getText().toString().contains("Da"))
+                        lblPosJug11.setText("E1J1");
+                    if (lblPosJug12.getText().toString().contains("Mano") || lblPosJug12.getText().toString().contains("Da"))
+                        lblPosJug12.setText("E1J2");
+                    if (lblPosJug13.getText().toString().contains("Mano") || lblPosJug13.getText().toString().contains("Da"))
+                        lblPosJug13.setText("E1J3");
+                    if (lblPosJug21.getText().toString().contains("Mano") || lblPosJug21.getText().toString().contains("Da"))
+                        lblPosJug21.setText("E2J1");
+                    if (lblPosJug22.getText().toString().contains("Mano") || lblPosJug22.getText().toString().contains("Da"))
+                        lblPosJug22.setText("E2J2");
+                    if (lblPosJug23.getText().toString().contains("Mano") || lblPosJug23.getText().toString().contains("Da"))
+                        lblPosJug23.setText("E2J3");
+
+                    Log.d("Num Jugadores: ",intNumeroJugadores.toString());
+                    Log.d("Mano pre-aumento: ",Mano.toString());
+                    Mano++;
+                    if (Mano >= intNumeroJugadores) Mano = 0;
+                    Log.d("Mano post-aumento: ",Mano.toString());
+
+                    switch (Mano) {
+                        default:
+                            lblPosJug11.append("\nMano");
+                            if (intNumeroJugadores == 2) lblPosJug21.append("\nDa");
+                            else if (intNumeroJugadores >= 4) lblPosJug22.append("\nDa");
+                            break;
+                        case 1:
+                            lblPosJug21.append("\nMano");
+                            lblPosJug11.append("\nDa");
+                            break;
+                        case 2:
+                            lblPosJug12.append("\nMano");
+                            lblPosJug21.append("\nDa");
+                            break;
+                        case 3:
+                            lblPosJug12.append("\nDa");
+                            if (intNumeroJugadores == 4)    lblPosJug22.append("\nMano");
+                            else if (intNumeroJugadores == 6)   lblPosJug23.append("\nMano");
+                            break;
+                        case 4:
+                            lblPosJug13.append("\nMano");
+                            lblPosJug23.append("\nDa");
+                            break;
+                        case 5:
+                            lblPosJug13.append("\nDa");
+                            lblPosJug22.append("\nMano");
+                            break;
+                    }
                 }
             }
         });
@@ -417,24 +470,27 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (intChicos2 >= intChicosAGanar) {
                     lytJuego.setVisibility(View.GONE);
+                    lytPosiciones.setVisibility(View.GONE);
                     spcBottom.setVisibility(View.VISIBLE);
                     lblMensajeGrande.setVisibility(View.VISIBLE);
                     lblMensajeGrande.setText("Ha ganado el Equipo 2! Felicitaciones a:\n" +
-                            getIntent().getStringExtra("E2J1") +
-                            getIntent().getStringExtra("E2J2") +
+                            getIntent().getStringExtra("E2J1") + "\n" +
+                            getIntent().getStringExtra("E2J2") + "\n" +
                             getIntent().getStringExtra("E2J3"));
                 } else {
                     intPtosEnJuego = 0;
                     lblPtosEnJuego.setText("Puntos\nen Juego:\n" + intPtosEnJuego);
 
-                    if (JugadaAnterior.getFirst().equals("Envido")||JugadaAnterior.getFirst().equals("Real Envido")
-                            ||JugadaAnterior.getFirst().equals("Falta Envido")||JugadaAnterior.getFirst().equals("Flor")||
-                            JugadaAnterior.getFirst().equals("Contra-Flor")||JugadaAnterior.getFirst().equals("Contra-Flor al Resto")){
+                    if (JugadaAnterior.getFirst().equals("Envido") || JugadaAnterior.getFirst().equals("Real Envido")
+                            || JugadaAnterior.getFirst().equals("Falta Envido") || JugadaAnterior.getFirst().equals("Flor") ||
+                            JugadaAnterior.getFirst().equals("Contra-Flor") || JugadaAnterior.getFirst().equals("Contra-Flor al Resto")) {
                         lytTruco.setVisibility(View.VISIBLE);
                         lytEnvido.setVisibility(View.GONE);
                         lytFlor.setVisibility(View.GONE);
+                        lytMazoNoPrimera.setVisibility(View.VISIBLE);
+                        btnPrimerCarta.setVisibility(View.GONE);
                         btnVanAlMazo.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         lytEnvido.setVisibility(View.VISIBLE);
                         btnEnvido.setVisibility(View.VISIBLE);
                         btnRealEnvido.setVisibility(View.VISIBLE);
@@ -460,6 +516,54 @@ public class MainActivity extends AppCompatActivity {
 
                     lblPtos2.setText("Tantos:\n" + intPtos2);
                     lblChicos2.setText("Chicos:\n" + intChicos2);
+
+                    if (lblPosJug11.getText().toString().contains("Mano") || lblPosJug11.getText().toString().contains("Da"))
+                        lblPosJug11.setText("E1J1");
+                    if (lblPosJug12.getText().toString().contains("Mano") || lblPosJug12.getText().toString().contains("Da"))
+                        lblPosJug12.setText("E1J2");
+                    if (lblPosJug13.getText().toString().contains("Mano") || lblPosJug13.getText().toString().contains("Da"))
+                        lblPosJug13.setText("E1J3");
+                    if (lblPosJug21.getText().toString().contains("Mano") || lblPosJug21.getText().toString().contains("Da"))
+                        lblPosJug21.setText("E2J1");
+                    if (lblPosJug22.getText().toString().contains("Mano") || lblPosJug22.getText().toString().contains("Da"))
+                        lblPosJug22.setText("E2J2");
+                    if (lblPosJug23.getText().toString().contains("Mano") || lblPosJug23.getText().toString().contains("Da"))
+                        lblPosJug23.setText("E2J3");
+
+                    Log.d("Num Jugadores: ",intNumeroJugadores.toString());
+                    Log.d("Mano pre-aumento: ",Mano.toString());
+                    Mano++;
+                    if (Mano >= intNumeroJugadores) Mano = 0;
+                    Log.d("Mano post-aumento: ",Mano.toString());
+
+                    switch (Mano) {
+                        default:
+                            lblPosJug11.append("\nMano");
+                            if (intNumeroJugadores == 2) lblPosJug21.append("\nDa");
+                            else if (intNumeroJugadores >= 4) lblPosJug22.append("\nDa");
+                            break;
+                        case 1:
+                            lblPosJug21.append("\nMano");
+                            lblPosJug11.append("\nDa");
+                            break;
+                        case 2:
+                            lblPosJug12.append("\nMano");
+                            lblPosJug21.append("\nDa");
+                            break;
+                        case 3:
+                            lblPosJug12.append("\nDa");
+                            if (intNumeroJugadores == 4)    lblPosJug22.append("\nMano");
+                            else if (intNumeroJugadores == 6)   lblPosJug23.append("\nMano");
+                            break;
+                        case 4:
+                            lblPosJug13.append("\nMano");
+                            lblPosJug23.append("\nDa");
+                            break;
+                        case 5:
+                            lblPosJug13.append("\nDa");
+                            lblPosJug22.append("\nMano");
+                            break;
+                    }
                 }
             }
         });
