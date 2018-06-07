@@ -18,14 +18,14 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimaryTextHalfOpacity"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <Space
         android:id="@+id/spcBottomSpace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -155,7 +155,7 @@
         android:layout_height="match_parent"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/relativeLayout"
